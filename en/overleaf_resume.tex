@@ -1,0 +1,284 @@
+%-------------------------------------
+% LaTeX Resume for Software Engineers
+% Author : Leslie Cheng
+% License : MIT
+%-------------------------------------
+
+\documentclass[letterpaper,12pt]{article}[leftmargin=*]
+
+\usepackage[empty]{fullpage}
+\usepackage{enumitem}
+\usepackage{ifxetex}
+\ifxetex
+  \usepackage{fontspec}
+  \usepackage[xetex]{hyperref}
+\else
+  \usepackage[utf8]{inputenc}
+  \usepackage[T1]{fontenc}
+  \usepackage[pdftex]{hyperref}
+\fi
+\usepackage{fontawesome}
+\usepackage[sfdefault,light]{FiraSans}
+\usepackage{anyfontsize}
+\usepackage{xcolor}
+\usepackage{tabularx}
+
+%-------------------------------------------------- SETTINGS HERE --------------------------------------------------
+% Header settings
+\def \fullname {Rodrigo Diaz F}
+\def \subtitle {}
+
+\def \linkedinicon {\faLinkedin}
+\def \linkedinlink {https://linkedin.com/in/rodrigo-diaz-flores/}
+\def \linkedintext {/rodrigo-diaz-flores}
+
+\def \phoneicon {\faPhone}
+\def \phonetext {+56 9 6761 8088}
+
+\def \emailicon {\faEnvelope}
+\def \emaillink {mailto:rodrigo.ediaz.f@gmail.com}
+\def \emailtext {rodrigo.ediaz.f@gmail.com}
+
+\def \githubicon {\faGithub}
+\def \githublink {https://github.com/Rih}
+\def \githubtext {/Rih}
+
+%\def \websiteicon {\faGlobe}
+%\def \websitelink {https://google.com/}
+%\def \websitetext {dwightschrute.com}
+
+\def \headertype {\doublecol} % \singlecol or \doublecol
+
+% Misc settings
+\def \entryspacing {-0pt}
+
+\def \bulletstyle {\faAngleRight}
+
+% Define colours
+\definecolor{primary}{HTML}{000000}
+\definecolor{secondary}{HTML}{009900}
+\definecolor{accent}{HTML}{263238}
+\definecolor{links}{HTML}{1565C0}
+
+%------------------------------------------------------------------------------------------------------------------- 
+
+% Defines to make listing easier
+\def \linkedin {\linkedinicon \hspace{3pt}\href{\linkedinlink}{\linkedintext}}
+\def \phone {\phoneicon \hspace{3pt}{ \phonetext}}
+\def \email {\emailicon \hspace{3pt}\href{\emaillink}{\emailtext}}
+\def \github {\githubicon \hspace{3pt}\href{\githublink}{\githubtext}}
+\def \website {\websiteicon \hspace{3pt}\href{\websitelink}{\websitetext}}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.55in}
+\addtolength{\evensidemargin}{-0.55in}
+\addtolength{\textwidth}{1.1in}
+\addtolength{\topmargin}{-0.6in}
+\addtolength{\textheight}{1.1in}
+
+% Define the link colours
+\hypersetup{
+    colorlinks=true,
+    urlcolor=links,
+}
+
+% Set the margin alignment 
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+%-------------------------
+% Custom commands
+
+% Sections
+\renewcommand{\section}[2]{\vspace{5pt}
+  \colorbox{secondary}{\color{white}\raggedbottom\normalsize\textbf{{#1}{\hspace{7pt}#2}}}
+}
+
+% Entry start and end, for spacing
+\newcommand{\resumeEntryStart}{\begin{itemize}[leftmargin=2.5mm]}
+\newcommand{\resumeEntryEnd}{\end{itemize}\vspace{\entryspacing}}
+
+% Itemized list for the bullet points under an entry, if necessary
+\newcommand{\resumeItemListStart}{\begin{itemize}[leftmargin=4.5mm]}
+\newcommand{\resumeItemListEnd}{\end{itemize}}
+
+% Resume item
+\renewcommand{\labelitemii}{\bulletstyle}
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+
+% Entry with title, subheading, date(s), and location
+\newcommand{\resumeEntryTSDL}[4]{
+  \vspace{-1pt}\item[]
+    \begin{tabularx}{0.97\textwidth}{X@{\hspace{60pt}}r}
+      \textbf{\color{primary}#1} & {\firabook\color{accent}\small#2} \\
+      \textit{\color{accent}\small#3} & \textit{\color{accent}\small#4} \\
+    \end{tabularx}\vspace{-6pt}
+}
+
+% Entry with title and date(s)
+\newcommand{\resumeEntryTD}[2]{
+  \vspace{-1pt}\item[]
+    \begin{tabularx}{0.97\textwidth}{X@{\hspace{60pt}}r}
+      \textbf{\color{primary}#1} & {\firabook\color{accent}\small#2} \\
+    \end{tabularx}\vspace{-6pt}
+}
+
+% Entry for special (skills)
+\newcommand{\resumeEntryS}[2]{
+  \item[]\small{
+    \textbf{\color{primary}#1 }{ #2 \vspace{-6pt}}
+  }
+}
+
+% Double column header
+\newcommand{\doublecol}[6]{
+  \begin{tabularx}{\textwidth}{Xr}
+    {
+      \begin{tabular}[c]{l}
+        \fontsize{35}{45}\selectfont{\color{primary}{{\textbf{\fullname}}}} \\
+        {\textit{\subtitle}} % You could add a subtitle here
+      \end{tabular}
+    } & {
+      \begin{tabular}[c]{l@{\hspace{1.5em}}l}
+        {\small#4} & {\small#1} \\
+        {\small#5} & {\small#2} \\
+        {\small#6} & {\small#3}
+      \end{tabular}
+    }
+  \end{tabularx}
+}
+
+% Single column header
+\newcommand{\singlecol}[6]{
+  \begin{tabularx}{\textwidth}{Xr}
+    {
+      \begin{tabular}[b]{l}
+        \fontsize{35}{45}\selectfont{\color{primary}{{\textbf{\fullname}}}} \\
+        {\textit{\subtitle}} % You could add a subtitle here
+      \end{tabular}
+    } & {
+      \begin{tabular}[c]{l}
+        {\small#1} \\
+        {\small#2} \\
+        {\small#3} \\
+        {\small#4} \\
+        {\small#5} \\
+        {\small#6}
+      \end{tabular}
+    }
+  \end{tabularx}
+}
+
+\begin{document}
+%-------------------------------------------------- BEGIN HERE --------------------------------------------------
+
+%---------------------------------------------------- HEADER ----------------------------------------------------
+
+\headertype{\linkedin}{\github}{\website}{\phone}{\email}{} % Set the order of items here
+\vspace{-10pt} % Set a negative value to push the body up, and the opposite
+
+%-------------------------------------------------- EDUCATION --------------------------------------------------
+\section{\faGraduationCap}{About me}
+
+  \resumeEntryStart
+    
+      Software Engineer with +5 years involved in banking, education, health and e-commerce industries using mostly Web  technologies (Python, VueJS, ReactJS and PHP), high use of TDD in backend and pattern design. I’m open to international opportunities to keep developing my professional career and besides create a positive impact in society. Great interest in Web Architecture, Blockchain, Ethical Hacking and Machine learning.
+  \resumeEntryEnd
+
+%-------------------------------------------------- EXPERIENCE --------------------------------------------------
+\section{\faPieChart}{Experience}
+  \resumeEntryStart
+    \resumeEntryTSDL
+      {SISTEMATIZA SpA}{March 2020 -- Present (1 year)}
+      {Remote Software Engineer}{Valdivia, CL}
+    \resumeItemListStart
+    Custom software company, design ERP and RPA systems. Created 3 Web Apps with PWA technologies for Instituto Forestal INFOR
+
+      \resumeItem {App viewer maps: A configurable tool to work with geospatial data. Client’s researchers will be able to create income of forest industry and correlate them for conclusions.}
+      \resumeItem {App xstock: Offline tool synchronized to a central server when online. Used to measure stands, plots and lands inventory. It replaces a client’s stand-alone ionic app with same feature and added new ones to work in the field}
+      \resumeItem {App Data interface:  It’s a data source app, queryable to many databases, provides a query builder tool to fetch and export specific data. The client’s users can import them into an aggregated graphs and tabular data and share among research lines.}
+    \resumeItemListEnd
+  \resumeEntryEnd
+
+  \resumeEntryStart
+    \resumeEntryTSDL
+      {ULTRABOX S.A}{July. 2018 -- January. 2021 (2.5 years)}
+      {Remote Python Developer}{Bogotá, CO}
+    \resumeItemListStart
+    Import and transport product company to Colombia and other latinamerican countries. It integrates international e-commerce and several payment methods.
+
+      \resumeItem {Redesigned platform improving customer’s purchase experience.}
+      \resumeItem {Integrated communication chatbot to the helpdesk area giving a better channel to help customer issues.}
+      \resumeItem {Constructed a webscraper to Techbargains, and an short app to reply FAQs in WhatsApp Web.}
+    \resumeItemListEnd
+  \resumeEntryEnd
+
+ % \resumeEntryStart
+    %\resumeEntryTSDL
+      %{NEWDEV SpA}{September 2019 - January 2021 (1.5 years)}
+      %{Remote Python Developer}{Valdivia, CL}
+    %\resumeItemListStart
+        %IoT, web and IA software solutions startup collaborating in entrepreneurship environment remotely.
+        %\resumeItem {Integrated payment gateway paypal and transbank}
+        %\resumeItem {Developed android background tasks with bluetooth signals in a POC covid tracker app}
+        %\resumeItem {Collaborated to finish an MVP transcription app to offer as an attractive ML solution to the public in near future}
+    %\resumeItemListEnd
+  %\resumeEntryEnd
+
+  \resumeEntryStart
+    \resumeEntryTSDL
+      {CLASSROOMTV SpA}{November 2016 - March 2018 (1 year 3 months)}
+      {Software Engineer}{Santiago, CL}
+    \resumeItemListStart
+        E-learning Company, integrated with SENCE (state entity) with custom course and own audiovisual production
+
+      \resumeItem {Included new modules to the platform in order to extend learning objects such as evaluations and a talent management system creating a path career}
+      \resumeItem {Created and automate many back office tasks that increase the uptime of the platform in general}
+      \resumeItem {Resolved security issues and blocked system causes, decreasing the customer support calls of the user’s complains when high demands arises}
+      \resumeitem {Solved many technology challenges when a client have low internet connection}
+    \resumeItemListEnd
+  \resumeEntryEnd
+
+
+%-------------------------------------------------- PROJECTS --------------------------------------------------
+%\section{\faFlask}{Projects}
+
+ % \resumeEntryStart
+ %   \resumeEntryTD
+ %     {Schrute Farms (Bed and Breakfast)}{}
+ %   \resumeItemListStart
+ %     \resumeItem {A beautiful resort that provides fun activites like tablemaking and mattress making.}
+ %   \resumeItemListEnd
+ % \resumeEntryEnd
+
+ % \resumeEntryStart
+ %   \resumeEntryTD
+ %     {Dwight Schrute's Gym for Muscles}{}
+ %   \resumeItemListStart
+ %     \resumeItem {A built-in gym inside the Dunder Mifflin office complex that will buy your tin for 5 cents a yard.}
+ %  \resumeItemListEnd
+ % \resumeEntryEnd
+
+ % \resumeEntryStart
+ %   \resumeEntryTD
+ %     {Sesame Avenue Daycare Center for Infants and Toddlers}{}
+ %   \resumeItemListStart
+ %     \resumeItem {A great daycare for infants with a focus on cognitive development.}
+ %   \resumeItemListEnd
+ % \resumeEntryEnd
+
+%-------------------------------------------------- PROGRAMMING SKILLS --------------------------------------------------
+\section{\faGears}{Skills}
+ \resumeEntryStart
+  \resumeEntryS{Programming Language } {Python 3+, PHP 7+, Javascript ES6+ }
+  \resumeEntryS{Frameworks and tools and db} {Django, Yiiframework, Laravel, Docker, PostgreSQL, MySQL, MongoDB}
+  \resumeEntryS{Standards } {API Restful, Pattern design}
+  \resumeEntryS{Frontend } {React, NextJS, VueJS, CSS3, HTML, JSON}
+ \resumeEntryEnd
+
+\end{document}
